@@ -64,12 +64,12 @@ export default {
   },
  
   plugins: [
-    
     plugin(({ addVariant, e }) => {
       addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
       });
     }),
+    
   ],
 }
 

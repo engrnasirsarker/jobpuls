@@ -14,7 +14,7 @@
             <router-view></router-view>
           </div>
         </main>      
-        <Banner />      
+        
         
         <footer class="dark:border-slate-700 bg-white border-t border-slate-200 dark:bg-[#182235] bottom-0 fixed w-full">
               <div class="mx-auto text-center">
@@ -31,7 +31,6 @@
   import { ref } from 'vue'
   import Sidebar from '@/partials/Sidebar.vue'
   import Header from '@/partials/Header.vue'
-  import Banner from '@/partials/Banner.vue'
   
   const sidebarOpen = ref(false)
   

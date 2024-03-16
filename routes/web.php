@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Laravel\Fortify\Fortify;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +14,20 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+Route::get('/admin/login', [AuthController::class, 'getLogin']);
+Route::post('/admin/login', [AuthController::class, 'UserLogin'])->name('admin.login');
+Route::post('/candidate/login', [AuthController::class, 'candidateLogin']);
+Route::post('/employer/login', [AuthController::class, 'employerLogin']);
 
-Route::post('/login', [AuthController::class, 'UserLogin']);
-
-Route::post('/logout',[AuthController::class,'UserLogout'])
+Route::post('/admin/logout',[AuthController::class,'UserLogout'])
         ->name('logout')->middleware('auth:sanctum');
+Route::post('/employer/candidate/logout',[AuthController::class,'employerCandidateLogout'])
+        ->middleware('auth:sanctum');
+
 
 Route::get('/admin/{any?}', function () {
     return view('app');
-})->where('any', '[\/\w\.-]*')->middleware('auth');
+})->where('any', '[\/\w\.-]*')->middleware('auth:sanctum');
 
 Route::get('/{any?}', function () {
     return view('home');
